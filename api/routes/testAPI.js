@@ -34,13 +34,14 @@ router.delete('/data/:id',(req,res,next)=>
 {
   Pet.remove({_id : req.params.id },(err,result)=>
   {
-      if(err)
-      {
-          res.json(err);
-      }
-      else{
-         res.json({msg : "ok"})
-      }
+    if(err)
+    {
+        res.json(err);
+    }
+    else{
+       res.json({msg : "ok"})
+    }
+  })
 })
 router.get("/data", (req, res, next) => {
    Pet.find()
