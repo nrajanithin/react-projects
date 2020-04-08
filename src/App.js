@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import validator from 'validator';
+import {withRouter} from 'react-router-dom';
+import Login from './Login'
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -9,25 +11,23 @@ import {
   Link
 } from "react-router-dom";
 import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import Axios from 'axios';
 class App extends React.Component
 {
-  /*callAPI()
-  {
-    fetch("http://localhost:9000/testAPI")
-    .then(res => res.text())
-    .then(res => this.setState({apiResponse:res}));
-  }
-  componentWillMount()
-  {
-    this.callAPI();
-  }*/
   render()
   {
     return(
-      <Header/>     
+      <div>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/home" component={Header} />
+        </Switch>
+      </div>
+          
     );
   }
 }
+
 class Header extends React.Component
 {
   render()

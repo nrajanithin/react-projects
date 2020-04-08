@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 var router = express.Router();
 var uuidv4 = require('uuid/v4');
 let Pet = require("../models/Pet");
+let User = require("../models/User");
 const DIR = './public/';
 const storage = multer.diskStorage({
    destination: (req, file, cb) => {
@@ -30,6 +31,21 @@ router.get("/",(req,res,next)=>
 {
    res.send("it's working perfect");
 });
+router.post('/check',(req,res,next)=>
+{
+  console.log(req.body.username)
+  console.log(req.body.password)
+  User.find({username:req.body.username,password:req.body.password})
+  .then(result =>{ console.log(result.length);
+              if(result.length == 1)
+              {
+                res.send("ok")
+              }
+              else{
+                res.send("no")
+              }
+              })
+})
 router.delete('/data/:id',(req,res,next)=>
 {
   Pet.remove({_id : req.params.id },(err,result)=>
